@@ -20,13 +20,6 @@ import ThreatModal        from './components/ThreatModal';
 import AlertModal        from './components/AlertModal';
 import SystemStatusModal  from './components/SystemStatusModal';
 
-import './styles/layout.css';
-import './styles/components.css';
-import './styles/dashboard.css';
-import './styles/settings.css';
-import './styles/notifications.css';
-import './styles/domainScan.css';
-
 function PageRouter({ activePage, onExport, onNavigate, onOpenModal }) {
   if (activePage === 'dashboard') {
     return <Dashboard onExport={onExport} onVulnClick={() => onNavigate('vulnerabilities')} onOpenModal={onOpenModal} />;
@@ -98,7 +91,7 @@ function MainApp() {
     setModalState({ type, data });
   }, []);
 
-  const handleCloseModal = useCallback(() => {
+  const handleCloseModal = useCallback((type, data = null) => {
     setModalState({ type: null, data: null });
   }, []);
 
@@ -108,10 +101,10 @@ function MainApp() {
       timestamp: new Date().toISOString(),
       format,
       summary: {
-        totalAssets: 1428,
-        criticalVulnerabilities: 23,
+        totalAssets: 142,
+        criticalVulnerabilities: 7,
         activeThreats: 12,
-        securityScore: 84,
+        securityScore: 88,
       },
     };
     const jsonStr = JSON.stringify(reportData, null, 2);
